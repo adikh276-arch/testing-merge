@@ -1,10 +1,8 @@
-import type { Metadata } from "next";
+import { Suspense } from "react";
+import AuthProvider from "@/providers/AuthProvider";
 import "./globals.css";
 
-export const metadata: Metadata = {
-  title: "Therapy Platform",
-  description: "MantraCare Therapy Apps Monorepo",
-};
+export const dynamic = 'force-dynamic';
 
 export default function RootLayout({
   children,
@@ -14,7 +12,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body>
-        {children}
+        <Suspense fallback={<div className="min-h-screen flex items-center justify-center">Loading...</div>}>
+          <AuthProvider>
+            {children}
+          </AuthProvider>
+        </Suspense>
       </body>
     </html>
   );
