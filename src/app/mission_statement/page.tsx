@@ -1,5 +1,5 @@
 "use client";
-export const dynamic = 'force-dynamic';
+
 import { useState } from "react";
 import IntroScreen from "@/components/mission_statement/screens/IntroScreen";
 import ValuesScreen from "@/components/mission_statement/screens/ValuesScreen";
