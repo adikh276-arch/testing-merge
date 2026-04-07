@@ -1,18 +1,25 @@
 import { Pool, PoolClient } from "@neondatabase/serverless";
 
-if (!process.env.DATABASE_URL) {
-  console.warn("DATABASE_URL is not set. Database features will not work.");
-}
+let globalPool: Pool | null = null;
 
-const globalPool = new Pool({
-  connectionString: process.env.DATABASE_URL,
-  max: 10,
-  idleTimeoutMillis: 30000,
-  connectionTimeoutMillis: 2000,
-});
+const getPool = () => {
+  if (!globalPool) {
+    if (!process.env.DATABASE_URL) {
+      throw new Error("DATABASE_URL is not set. Use environment variables to provide it.");
+    }
+    globalPool = new Pool({
+      connectionString: process.env.DATABASE_URL,
+      max: 10,
+      idleTimeoutMillis: 30000,
+      connectionTimeoutMillis: 2000,
+    });
+  }
+  return globalPool;
+};
 
 export const getDbClient = async (schema: string): Promise<PoolClient> => {
-  const client = await globalPool.connect();
+  const pool = getPool();
+  const client = await pool.connect();
   
   // Set the search path for this specific client connection
   // Ensure we include 'core' schema for shared tables like 'users'

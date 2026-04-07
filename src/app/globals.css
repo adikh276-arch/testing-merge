@@ -6,50 +6,45 @@
   --color-ring: hsl(240 5.9% 10%);
   --color-background: hsl(0 0% 100%);
   --color-foreground: hsl(240 10% 3.9%);
-
-  --color-primary: hsl(240 5.9% 10%);
-  --color-primary-foreground: hsl(0 0% 98%);
-
-  --color-secondary: hsl(240 4.8% 95.9%);
-  --color-secondary-foreground: hsl(240 5.9% 10%);
-
-  --color-muted: hsl(240 4.8% 95.9%);
-  --color-muted-foreground: hsl(240 3.8% 46.1%);
-
-  --color-accent: hsl(240 4.8% 95.9%);
-  --color-accent-foreground: hsl(240 5.9% 10%);
-
-  --color-destructive: hsl(0 84.2% 60.2%);
-  --color-destructive-foreground: hsl(0 0% 98%);
-
-  --color-popover: hsl(0 0% 100%);
-  --color-popover-foreground: hsl(240 10% 3.9%);
-
-  --color-card: hsl(0 0% 100%);
-  --color-card-foreground: hsl(240 10% 3.9%);
-
+  
   --radius-lg: 0.5rem;
   --radius-md: calc(0.5rem - 2px);
   --radius-sm: calc(0.5rem - 4px);
 
   --animate-breathe: breathe 8s ease-in-out infinite;
-  --animate-accordion-down: accordion-down 0.2s ease-out;
-  --animate-accordion-up: accordion-up 0.2s ease-in;
-
+  
   @keyframes breathe {
     0%, 100% { transform: scale(1); opacity: 0.4; filter: blur(50px); }
     50% { transform: scale(1.1); opacity: 0.6; filter: blur(70px); }
   }
+}
 
-  @keyframes accordion-down {
-    from { height: 0; }
-    to { height: var(--radix-accordion-content-height); }
-  }
+/* Default Theme (Mission Statement / Platform) */
+:root {
+  --background: 0 0% 100%;
+  --foreground: 240 10% 3.9%;
+  --primary: 240 5.9% 10%;
+  --primary-foreground: 0 0% 98%;
+  --secondary: 240 4.8% 95.9%;
+  --secondary-foreground: 240 5.9% 10%;
+  --muted: 240 4.8% 95.9%;
+  --muted-foreground: 240 3.8% 46.1%;
+  --card: 0 0% 100%;
+  --card-foreground: 240 10% 3.9%;
+}
 
-  @keyframes accordion-up {
-    from { height: var(--radix-accordion-content-height); }
-    to { height: 0; }
-  }
+/* Brain Dump Theme (Calm & Sage) */
+.theme-brain-dump {
+  --background: 40 33% 98%;
+  --foreground: 24 10% 20%;
+  --primary: 158 23% 38%; /* Sage Green */
+  --primary-foreground: 0 0% 100%;
+  --secondary: 30 18% 85%;
+  --secondary-foreground: 24 10% 20%;
+  --muted: 30 18% 90%;
+  --muted-foreground: 24 5% 45%;
+  --card: 0 0% 100%;
+  --card-foreground: 24 10% 20%;
 }
 
 @utility gradient-calm {
@@ -60,23 +55,15 @@
   box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
 }
 
-* {
-  @apply border-border;
-}
-
 body {
   @apply bg-background text-foreground;
-  font-feature-settings: "rlig" 1, "calt" 1;
 }
 
-.gradient-calm {
-  background: linear-gradient(135deg, #fdfcfb 0%, #e2d1c3 100%);
-}
-
-.animate-breathe {
-  animation: breathe 8s ease-in-out infinite;
-}
-
-.shadow-soft {
-  box-shadow: 0 4px 20px -2px rgba(0, 0, 0, 0.05);
-}
+/* Map Shadcn variables to Tailwind 4 variables */
+.bg-background { background-color: hsl(var(--background)); }
+.text-foreground { color: hsl(var(--foreground)); }
+.bg-primary { background-color: hsl(var(--primary)); }
+.text-primary { color: hsl(var(--primary)); }
+.border-border { border-color: hsl(240 5.9% 90%); }
+.bg-card { background-color: hsl(var(--card)); }
+.text-muted-foreground { color: hsl(var(--muted-foreground)); }
