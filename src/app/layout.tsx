@@ -1,5 +1,6 @@
 import { Suspense } from "react";
 import AuthProvider from "@/providers/AuthProvider";
+import "@/i18n";
 import "./globals.css";
 
 export const dynamic = 'force-dynamic';

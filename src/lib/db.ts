@@ -1,8 +1,14 @@
 import { Pool, PoolClient } from "@neondatabase/serverless";
 
+if (!process.env.DATABASE_URL) {
+  console.warn("DATABASE_URL is not set. Database features will not work.");
+}
+
 const globalPool = new Pool({
-  connectionString: process.env.DATABASE_URL || "postgresql://neondb_owner:npg_fPtnqSQ24Xwo@ep-plain-thunder-a7xaulng-pooler.ap-southeast-2.aws.neon.tech/neondb?sslmode=require&channel_binding=require",
+  connectionString: process.env.DATABASE_URL,
   max: 10,
+  idleTimeoutMillis: 30000,
+  connectionTimeoutMillis: 2000,
 });
 
 export const getDbClient = async (schema: string): Promise<PoolClient> => {
