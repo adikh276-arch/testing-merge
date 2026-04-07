@@ -1,5 +1,5 @@
-# Install dependencies only when needed
 FROM node:20-alpine AS deps
+RUN apk add --no-cache libc6-compat
 WORKDIR /app
 
 # Copy package.json and lockfile
@@ -11,6 +11,9 @@ FROM node:20-alpine AS builder
 WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY . .
+
+# Increase memory for build
+ENV NODE_OPTIONS="--max-old-space-size=4096"
 
 # Next.js telemetry disable
 ENV NEXT_TELEMETRY_DISABLED 1
