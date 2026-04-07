@@ -61,7 +61,7 @@ export default function AuthProvider({ children }: { children: React.ReactNode }
       if (!storedToken || !storedUserId) {
         // No session found: save current path and kick to web subdomain for auth
         sessionStorage.setItem("redirect_path", pathname);
-        window.location.href = "https://web.mantracare.com/therapy";
+        window.location.href = "https://web.mantracare.com/app/therapy";
         return;
       }
 
