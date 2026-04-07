@@ -33,5 +33,5 @@ jobs:
           file: ./Dockerfile
           push: true
           tags: |
-            bunker.mantracare.com/library/therapy-monorepo:1.0
-            bunker.mantracare.com/library/therapy-monorepo:latest
+            bunker.mantracare.com/lovable/therapy:1.0
+            bunker.mantracare.com/lovable/therapy:latest
