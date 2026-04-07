@@ -23,8 +23,8 @@ jobs:
         uses: docker/login-action@v2
         with:
           registry: bunker.mantracare.com
-          username: ${{ secrets.HARBOUR_USERNAME }}
-          password: ${{ secrets.HARBOUR_PASSWORD }}
+          username: ${{ secrets.USERNAME }}
+          password: ${{ secrets.PASSWORD }}
 
       - name: Build and push Docker image
         uses: docker/build-push-action@v4
